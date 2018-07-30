@@ -2,11 +2,11 @@ FROM ubuntu:16.04
 
 MAINTAINER Dockerfiles
 
+# libmysqlclient-dev \
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
 	git \
-	libmysqlclient-dev \
 	python3 \
 	python3-dev \
 	python3-setuptools \
