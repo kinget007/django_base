@@ -19,7 +19,7 @@ MAINTAINER Dockerfiles
 # Install required packages and remove the apt packages cache when done.
 
 # nodejs
-RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+# RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -31,7 +31,6 @@ RUN apt-get update && \
 	python3-pip \
 	nginx \
 	supervisor \
-  nodejs \
 	sqlite3 && \
 	pip3 install -U pip setuptools && \
    rm -rf /var/lib/apt/lists/*
