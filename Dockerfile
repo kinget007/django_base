@@ -6,6 +6,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
 	git \
+	libmysqlclient-dev \
 	python3 \
 	python3-dev \
 	python3-setuptools \
