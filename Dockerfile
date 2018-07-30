@@ -2,7 +2,9 @@ FROM ubuntu:16.04
 
 MAINTAINER Dockerfiles
 
-# libmysqlclient-dev \
+RUN cd /etc/apt/ && cp sources.list sources.list.bak
+COPY ./sources.list /etc/apt/sources.list
+
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y \
@@ -11,6 +13,8 @@ RUN apt-get update && \
 	python3-dev \
 	python3-setuptools \
 	python3-pip \
+	ibmysqlclient-dev \
+	unixodbc-dev \
 	nginx \
 	supervisor \
 	sqlite3 && \
@@ -19,28 +23,3 @@ RUN apt-get update && \
 
 # install uwsgi now because it takes a little while
 RUN pip3 install uwsgi
-
-# setup all the configfiles
-# RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-# COPY nginx-app.conf /etc/nginx/sites-available/default
-# COPY supervisor-app.conf /etc/supervisor/conf.d/
-
-# COPY requirements.txt and RUN pip install BEFORE adding the rest of your code, this will cause Docker's caching mechanism
-# to prevent re-installing (all your) dependencies when you made a change a line or two in your app.
-
-# COPY app/requirements.txt /home/docker/code/app/
-# RUN pip3 install -r /home/docker/code/app/requirements.txt
-
-# copy project
-# COPY . /home/docker/code/
-# RUN pip3 install -r /home/docker/code/requirements.txt
-
-# add (the rest of) our code
-# COPY . /home/docker/code/
-
-# install django, normally you would remove this step because your project would already
-# be installed in the code/app/ directory
-# RUN django-admin.py startproject website /home/docker/code/
-
-# EXPOSE 80
-# CMD ["supervisord", "-n"]
