@@ -50,15 +50,15 @@ COPY supervisor-app.conf /etc/supervisor/conf.d/
 # RUN pip3 install -r /home/docker/code/app/requirements.txt
 
 # copy project
-COPY platform_frontend /home/docker/platform_frontend/
-RUN pip3 install -r /home/docker/platform_frontend/requirements.txt
+# COPY platform_frontend /home/docker/platform_frontend/
+# RUN pip3 install -r /home/docker/platform_frontend/requirements.txt
 
 # add (the rest of) our code
-COPY . /home/docker/code/
+# COPY . /home/docker/code/
 
 # install django, normally you would remove this step because your project would already
 # be installed in the code/app/ directory
-RUN django-admin.py startproject website /home/docker/platform_frontend/
+# RUN django-admin.py startproject website /home/docker/platform_frontend/
 
-EXPOSE 80
-CMD ["supervisord", "-n"]
+# EXPOSE 80
+# CMD ["supervisord", "-n"]
